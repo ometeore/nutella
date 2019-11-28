@@ -1,0 +1,23 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% block content %}
+
+<section class="page-section">
+
+    <form action="{% url 'user:inscription' %}" method="POST">
+        {% csrf_token %}
+        <div class="wrapper_form_connexion">
+            {% for field in form %}
+                <div class="fieldWrapper form-group">
+                    {{ field.label_tag }}
+                    <br/>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <br/>
+            <input type="submit" value="connexion">
+        </div>
+    </form>    
+
+</section>
+
+{% endblock %}

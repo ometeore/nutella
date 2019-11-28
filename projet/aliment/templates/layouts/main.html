@@ -1,0 +1,81 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- pannel photo and search input  -->
+    <div id="main_pannel" class="">
+      <div class="">
+        <div class="">
+          <h1 class="">Du gras oui, Mais de qualité!</h1>
+          <hr class="">
+        </div>
+        <div class="">
+          <p class="">Trouvez un produit de substitution pour ceux que vous consommez tous les jours.</p>
+                    
+          <form action="{% url 'aliment:recherche' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+
+  <!-- Services Section -->
+  <div class="" id="remi_colette">
+
+    <h2 class="">Colette & Rémi</h2>
+    <hr class="">
+
+    <div class="horizontal_flex">
+
+      <div class="col-lg-5 col-md-6">
+        <img class="image_colette_remi" src="{% static 'img/colette-9.jpg' %}" alt="logo">
+        <h3 class="">Colette</h3>
+        <p class="text_justify">Nous aimons tous manger, surtout en France ! Personnellement, une baguette fraîche, du bon fromage de chèvre et un bon vin rouge me suffisent amplement. Comme tout le monde, je fais mes courses au supermarché. Mais petit à petit je me suis rendue compte, surtout lorsque nous avons ouvert le restaurant, que je pouvais remplacer les produits aseptisés que j'avais l'habitude d'acheter par de bons produits du terroir Et souvent pour le même prix !</p>
+      </div>
+
+      <div class="col-lg-5 col-md-6">
+        <img class="image_colette_remi" src="{% static 'img/ratatouille-portrait.jpg' %}" alt="logo">
+        <h3 class="">Rémi</h3>
+        <p class="text_justify">Pour ma part je me rendais déjà dans bien des magasins car j'aime beaucoup me balader, surtout dans les caves et les cuisines. Je connaissais par coeur le contenu des boutiques bio (dont je raffole) ainsi que les ingrédients de tous les aliments vendus. Lorsque Colette m'a demandé si elle pouvait remplacer son Nutella matinal par un aliment plus sain, je savais tout de suite où le trouver. L'idée de Pur Beurre était née !</p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <!-- Contact Section -->
+  <div class="" id="contact">
+
+      <div class="">
+
+        <h2 class="">Contactez nous!</h2>
+        <hr class="">
+        <p class="">On ne répond que durant la pleine lune.</p>
+
+      </div>
+
+      <div class="horizontal_flex">
+
+        <div class="col-lg-4">
+          <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+          <div>+1 (202) 555-0149</div>
+        </div>
+
+        <div class="col-lg-4">
+          <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+          <!-- Make sure to change the email address in anchor text AND the link below! -->
+          <a class="d-block" href="mailto:contact@yourwebsite.com">pierre@le-thiec.fr</a>
+        </div>
+
+      </div>
+
+  </div>
+  {% endblock %}
+

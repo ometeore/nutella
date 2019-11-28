@@ -1,0 +1,26 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% block content %}
+
+<section class="page-section">
+
+    <form action="{% url 'user:connexion' %}" method="POST">
+        {% csrf_token %}
+        <div class="wrapper_form_connexion">
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.label_tag }}
+                    {% if field.label_tag == "last_name:" %}
+                        <label for="id_last_name">Nom:</label>
+                    {% endif %}
+                    <br/>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <br/>
+            <input type="submit" value="connexion">
+        </div>
+    </form>    
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% block content %}
+
+<section class="section_liste_aliment">
+
+    {% if user.is_authenticated %}
+    
+    <div class="section_titre_aliment">
+        <h1> Vos Substitutions </h1>
+    </div>
+
+    <div>
+        <div class="list_aliment_proposition col-lg-12">
+
+            {% for aliment in user.aliment.all %}
+
+            <div class="block_aliment col-lg-4">
+
+                <div class="col-lg-3 lien_image_block_aliment">
+                    <p class="grade_aliment_in_list">{{ aliment.note_nutritionelle }} </p>
+                    <img src="{{ aliment.url_img }}" alt="{{ aliment.nom }}_image" class="image_aliment_in_list">
+                </div>
+
+                <div class="link_to_aliment">
+                        <a class="link_and_name" href="{% url 'aliment:detail' aliment.pk %}">  {{ aliment.nom }} </a>
+                        <a class="" href="{% url 'aliment:delete' aliment.pk %} "><i class="fas fa-ban"></i>  Supprimer</a> 
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    {% else %}
+
+        <p>Vous n'êtes pas authentifier. Authentifiez vous pour sauvegarder vos substitutions.</p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

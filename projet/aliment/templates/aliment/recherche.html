@@ -1,0 +1,30 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% block content %}
+
+<section class="page-section flex">
+    {% if user.is_authenticated %}
+
+        {% for aliment in latest_aliment_list %}
+
+        <div class="block_aliment col-lg-4">
+
+            <div class="col-lg-3 lien_image_block_aliment">
+                <p class="grade_aliment_in_list">{{ aliment.note_nutritionelle }} </p>
+                <img src="{{ aliment.url_img }}" alt="{{ aliment.nom }}_image" class="image_aliment_in_list">
+            </div>
+
+            <div class="link_to_aliment">
+                <a href="{% url 'aliment:detail' aliment.id %}">{{ aliment.nom }}</a>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+        <p>Authentifiez vous.</p>
+    {% endif %}
+
+</section>
+
+{% endblock %}

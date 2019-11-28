@@ -1,0 +1,126 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% block content %}
+<style>
+    .background_title
+    {
+        background-image:url('{{ aliment.url_img }}');
+        background-repeat:no-repeat;
+        background-size:100%;
+        background-position: center center;
+        color: white;
+    }
+</style>
+
+<section class="section_titre_aliment background_title">
+    <h1 class="h1_titre_aliment">{{ aliment.nom }}</h1>
+</section>
+<section>
+    <div class="section_description_element">
+        <div class="col-lg-6 vertical_flex">
+            <p>Nutriscore :</p>
+            <div class="nutriscore_display col-lg-3">
+
+                {% if aliment.note_nutritionelle == "a" %}
+                <p class="theOne">A</p>
+                <p>B</p>
+                <p>C</p>
+                <p>D</p>
+                <p>E</p>
+                {% else %}
+                    {% if aliment.note_nutritionelle == "b" %}
+                    <p>A</p>
+                    <p class="theOne">B</p>
+                    <p>C</p>
+                    <p>D</p>
+                    <p>E</p>
+                    {% else %}
+                        {% if aliment.note_nutritionelle == "c" %}
+                        <p>A</p>
+                        <p>B</p>
+                        <p class="theOne">C</p>
+                        <p>D</p>
+                        <p>E</p>
+                        {% else %}
+                            {% if aliment.note_nutritionelle == "d" %}
+                            <p>A</p>
+                            <p>B</p>
+                            <p>C</p>
+                            <p class="theOne">D</p>
+                            <p>E</p>
+                            {% else %}
+                                {% if aliment.note_nutritionelle == "e" %}
+                                    <p>A</p>
+                                    <p>B</p>
+                                    <p>C</p>
+                                    <p>D</p>
+                                    <p class="theOne">E</p>
+                                {% else %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            
+            </div>
+        </div>
+
+        <div class="col-lg-6 horizontal_flex">
+            <table class="table-bordered col-lg-8">
+                <caption>Repère Nutritionelle pour 100g pris sur Open Food Fact</caption>
+                <thead>
+                    <tr>
+                    <th scope="col">acide gras saturé</th>
+                    <th scope="col">Sel</th>
+                    <th scope="col">Sucre</th>
+                    <th scope="col">Gras</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>{{ aliment.acide_100g }}</td>
+                    <td>{{ aliment.salt_100g }}</td>
+                    <td>{{ aliment.sugar_100g }}</td>
+                    <td>{{ aliment.glucide_100g }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <a href="{{ aliment.url_off }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voir la fiche d'Open Food Facts</a>
+    </div>
+    <div>
+            <a href="{{ aliment.url_off }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Substituer l'élément</a>
+        </div>
+
+
+</section>
+<hr>
+<section>
+    <h2> Vous pouvez remplacer cet aliment par: </h2>
+
+    <div class="list_aliment_proposition col-lg-12">
+    
+        {% for aliments in substitute %}
+
+            <div class="block_aliment col-lg-4">
+
+                <div class="col-lg-3 lien_image_block_aliment">
+                    <p class="grade_aliment_in_list">{{ aliments.note_nutritionelle }} </p>
+                    <img src="{{ aliments.url_img}}" alt="{{ aliments.nom }}_image" class="image_aliment_in_list">
+                </div>
+
+                <div class="link_to_aliment">
+                    <p class="aliment_name_in_link_to_aliment">  {{ aliments.nom }} </p>  
+                    <a class="" href="{% url 'aliment:substitute' aliments.pk %} "><i class="far fa-save"></i>  Sauvegarder</a>
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

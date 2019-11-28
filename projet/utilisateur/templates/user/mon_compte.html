@@ -1,0 +1,30 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% block content %}
+
+<section class="section_liste_aliment">
+
+    {% if user.is_authenticated %}
+    
+    <div class="section_titre_utilisateur">
+        <h1> {{ user.username }} </h1>
+    </div>
+
+    <div class="horizontal_flex">
+        
+        <div id="mon_compte_inputs" class="vertical_flex col-lg-2">
+            <input class="margin_20" type="text" placeholder="{{ user.email }}">
+            <input class="margin_20" type="submit" value="modifier">
+        </div>
+
+
+    </div>
+
+    {% else %}
+
+        <p>Vous n'êtes pas authentifier.</p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

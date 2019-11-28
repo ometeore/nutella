@@ -1,0 +1,108 @@
+{% load static %}
+body, h1, h2
+{
+    height: 100%;
+    text-align: center;
+    font-family: Merriweather,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+#remi_colette{
+    background-color: #f4623a;
+    color: white;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+#navbar{
+    background-color: #f4623a;
+    color: white;
+}
+.section_titre_aliment{
+    background: #e8ccb2;
+    padding: 15px;
+    
+}
+.section_description_element{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+.section_footer{
+    position: fixed;
+    bottom: 0px;
+    height:45px;
+    background: #f4623a;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.liste_aliment{
+    padding:50px;
+    font-size: 1.5em;
+}
+.logo{
+    height: 40px;
+    margin-right: 40px;
+}
+.theOne{
+    color:red;
+}
+.nutriscore_display{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+.aliment_name_in_link_to_aliment{
+    margin-bottom:0;
+    margin-top:10px;
+}
+.div-section{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.link_to_aliment{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.image_colette_remi{
+    max-height: 150px;
+}
+.margin_20{
+    margin:20px;
+}
+#main_pannel{
+    background: url("/static/img/fond.jpg") no-repeat;
+    background-size: cover;
+    opacity: 0.9;
+    height: 650px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.horizontal_flex{
+    display: flex;
+    justify-content: space-around;
+}
+.vertical_flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#contact{
+    margin:100px;
+}
+.text_justify{
+    text-align: justify;
+}
+.color_white{
+    color: white;
+}
+#mon_compte_inputs{
+    margin:auto;
+}
+.section_titre_utilisateur{
+    margin: 50px;
+}
