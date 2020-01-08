@@ -39,10 +39,15 @@
   <!-- Navigation -->
     <div id="navbar" class="horizontal_flex">
       <img class="logo" src="{% static 'img/logo_pur_beurre.png' %}" alt="logo">
-      <p class="color_white col-lg-4">Pur beurre</p>
 
-      <div class="col-lg-4 horizontal_flex">
-        <a class="color_white" href="{% url 'index' %}">Recherche</a>
+      <a class="color_white" href="{% url 'index' %}">Pur beurre</a>
+
+      <div class="col-lg-5 horizontal_flex">
+        <div class="vertical_flex">
+          <form action="{% url 'aliment:recherche' %}" method="POST" >
+            <input type="text" class="header_search_input">
+          </form>
+        </div>
         <a class="color_white" href="{% url 'aliment:index' %}"><i class="fas fa-carrot"></i></a>
 
         
@@ -62,15 +67,19 @@
 
       </div>
     </div>
-
+    
+    <div class="out_of_head_and_footer">
         {% block content %}
         {% endblock %}
 
-  <!-- Footer -->
-  <footer class="section_footer">
-    <p>Copyright pilt 2019 </p>
-    <a href="{% url 'index' %}#contact   "> Nous contacter </a>
-  </footer>
+        <!-- Footer -->
+        <footer class="section_footer">
+          <p>Copyright pilt 2019 </p>
+          <a class="color_black" href="{% url 'index' %}#contact"> Nous contacter </a>
+        </footer>
+    </div>
+
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -81,7 +90,9 @@
   <script src="{% static 'vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
 
   <!-- Custom scripts for this template -->
+  <script src="{% static 'js/js.js' %}"></script>
   <script src="{% static 'js/creative.min.js' %}"></script>
+
 
 </body>
 

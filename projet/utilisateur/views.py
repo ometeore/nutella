@@ -4,7 +4,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from utilisateur.models import MyUser
 from .forms import Connexion, Creation
+import logging
 
+LOGGER=logging.getLogger(__name__)
 
 def connexion(request):
     if request.method == "POST":
@@ -16,6 +18,9 @@ def connexion(request):
             mdp = form.cleaned_data["password"]
             user = authenticate(username=identifiant, password=mdp)
 
+            LOGGER.info("le mot de passe" + mdp)
+            LOGGER.warn("le mot de passe" + mdp)
+            
             if user is not None:
                 login(request, user)
                 return redirect("/")
@@ -34,13 +39,16 @@ def mon_compte(request):
 def create(request):
     form = Creation(request.POST)
     if form.is_valid():
-        user = MyUser.objects.create_user(form.cleaned_data["Username"])
-        user.set_password = form.cleaned_data["password"]
-        user.last_name = form.cleaned_data["last_name"]
-        user.first_name = form.cleaned_data["first_name"]
-        user.email = form.cleaned_data["email"]
-        user.save()
-        return render(request, "layouts/main.html")
+        if form.cleaned_data["confirm_password"] == form.cleaned_data["password"]:
+            user = MyUser.objects.create_user(form.cleaned_data["Username"])
+            user.set_password = form.cleaned_data["password"]
+            user.last_name = form.cleaned_data["last_name"]
+            user.first_name = form.cleaned_data["first_name"]
+            user.email = form.cleaned_data["email"]
+            user.save()
+            return render(request, "layouts/main.html")
+        else:
+            render(request, "user/creation.html", {"form": form})
     return render(request, "user/creation.html", {"form": form})
 
 

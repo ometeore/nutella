@@ -1,7 +1,7 @@
 {% extends 'layouts/index_bootstrap_theme.html' %}
 {% block content %}
 
-<section class="page-section flex">
+<section class="page-section horizontal_flex">
     {% if user.is_authenticated %}
 
         {% for aliment in latest_aliment_list %}

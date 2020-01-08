@@ -1,5 +1,5 @@
 {% load static %}
-body, h1, h2
+body, h1
 {
     height: 100%;
     text-align: center;
@@ -12,22 +12,30 @@ body, h1, h2
     padding-bottom: 80px;
 }
 #navbar{
-    background-color: #f4623a;
+    background-color: #f4624a;
     color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    height: 60px;
+    line-height: 60px;
 }
 .section_titre_aliment{
     background: #e8ccb2;
     padding: 15px;
     
 }
-.section_description_element{
+.main_description_element{
     display: flex;
     justify-content: space-evenly;
     padding: 15px;
 }
+.section_description_element{
+    min-height: 250px;
+}
 .section_footer{
-    position: fixed;
-    bottom: 0px;
+    position: absolute;
+    bottom: 0;
     height:45px;
     background: #f4623a;
     width: 100%;
@@ -43,6 +51,7 @@ body, h1, h2
 .logo{
     height: 40px;
     margin-right: 40px;
+    margin-top: 10px;
 }
 .theOne{
     color:red;
@@ -81,15 +90,22 @@ body, h1, h2
     flex-direction: column;
     justify-content: center;
 }
+.out_of_head_and_footer{
+    position: relative;
+    min-height: 100vh;
+    padding-top: 60px;
+    padding-bottom: 45px;
+}
 
 .horizontal_flex{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 .vertical_flex{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
 }
 #contact{
     margin:100px;
@@ -100,9 +116,27 @@ body, h1, h2
 .color_white{
     color: white;
 }
+.color_black{
+    color: black;
+}
 #mon_compte_inputs{
     margin:auto;
 }
 .section_titre_utilisateur{
     margin: 50px;
+}
+.text_main_photo{
+    background-color: rgba(244, 98, 58, 0.5);
+    margin: auto;
+    margin-bottom: 35px;
+    width: 50%;
+}
+.header_search_input{
+    height: 30px;
+    width: 75%;
+}
+
+.image_in_aliment_description{
+    height:250px;
+    max-width:150px;    
 }

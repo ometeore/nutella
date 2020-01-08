@@ -6,7 +6,6 @@ from aliment.models import Aliment, Categorie
 
 @login_required(login_url="/user/")
 def index(request):
-
     return render(request, "aliment/index.html")
 
 
@@ -14,7 +13,7 @@ def detail(request, aliment_id):
     aliment = get_object_or_404(Aliment, pk=aliment_id)
 
     cat = aliment.categorie.values_list("pk", flat=True)
-    aliments_same_categorie = Aliment.objects.filter(categorie__pk__in=cat).order_by('note_nutritionelle')[:6]
+    aliments_same_categorie = aliment.substitute()
 
     return render(
         request,

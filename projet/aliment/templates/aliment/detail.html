@@ -14,8 +14,8 @@
 <section class="section_titre_aliment background_title">
     <h1 class="h1_titre_aliment">{{ aliment.nom }}</h1>
 </section>
-<section>
-    <div class="section_description_element">
+<section class="section_description_element vertical_flex">
+    <div class="main_description_element">
         <div class="col-lg-6 vertical_flex">
             <p>Nutriscore :</p>
             <div class="nutriscore_display col-lg-3">
@@ -86,18 +86,24 @@
             </table>
         </div>
     </div>
-    <div>
-        <a href="{{ aliment.url_off }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Voir la fiche d'Open Food Facts</a>
+
+    <div id="remove2" class="horizontal_flex margin_20">
+        <img src="{{ aliment.url_img}}" alt="{{ aliment.nom }}_image" id="remove2" class="image_in_aliment_description">
     </div>
-    <div>
-            <a href="{{ aliment.url_off }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Substituer l'élément</a>
-        </div>
+
+
+    <div class="margin_20">
+        <a href="{{ aliment.url_off }}" target = "_blank"><button>Voir la fiche d'Open Food Facts</button></a>
+    </div>
+    <div class="margin_20">
+        <button onclick="show()" id="remove">Substituer l'élément</button>
+    </div>
 
 
 </section>
-<hr>
-<section>
-    <h2> Vous pouvez remplacer cet aliment par: </h2>
+
+<section id="section_substitute" style="display: none;">
+    <p> Vous pouvez remplacer cet aliment par: </p>
 
     <div class="list_aliment_proposition col-lg-12">
     
@@ -111,7 +117,7 @@
                 </div>
 
                 <div class="link_to_aliment">
-                    <p class="aliment_name_in_link_to_aliment">  {{ aliments.nom }} </p>  
+                    <a class="link_and_name" href="{% url 'aliment:detail' aliments.pk %}">  {{ aliment.nom }} </a>
                     <a class="" href="{% url 'aliment:substitute' aliments.pk %} "><i class="far fa-save"></i>  Sauvegarder</a>
                 </div>
 
