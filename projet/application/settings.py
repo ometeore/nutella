@@ -25,8 +25,7 @@ SECRET_KEY = "3v1dbymwzrrmgf#ryy@89au2ze8-c#w)maxpn036ph@z!%%99="
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['pilt-nutella.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
