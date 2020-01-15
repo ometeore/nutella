@@ -14,7 +14,7 @@
                     
           <form action="{% url 'aliment:recherche' %}" method="post">
             {% csrf_token %}
-            {{ form }}
+            <input type="text" name="element_search">
           </form>
 
         </div>

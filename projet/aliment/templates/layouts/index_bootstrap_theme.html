@@ -44,8 +44,9 @@
 
       <div class="col-lg-5 horizontal_flex">
         <div class="vertical_flex">
-          <form action="{% url 'aliment:recherche' %}" method="POST" >
-            <input type="text" class="header_search_input">
+          <form action="{% url 'aliment:recherche' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" class="header_search_input" name="element_search">
           </form>
         </div>
         <a class="color_white" href="{% url 'aliment:index' %}"><i class="fas fa-carrot"></i></a>

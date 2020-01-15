@@ -1,0 +1,1 @@
+web:cd projet && gunicorn application.wsgi
