@@ -25,7 +25,7 @@ SECRET_KEY = "3v1dbymwzrrmgf#ryy@89au2ze8-c#w)maxpn036ph@z!%%99="
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pilt-nutella.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = "utilisateur.MyUser"
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
