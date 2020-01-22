@@ -30,17 +30,20 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         list_of_categorie = ["viande","biscuit","legume","snacks","Boissons","Produits laitiers","Céréales et pommes de terre"]
-        
+
         for cat in list_of_categorie:
             products = get_list_aliment(cat,100)
 
             ##### Pour chacun des aliments on crée une instance et on le sauvgarde
             for product in products:
-
-                alm, ack = Aliment.objects.get_or_create(nom=product["product_name_fr"])
-                alm.note_nutritionelle = product["nutrition_grades_tags"][0]
-
                 try:
+                    alm, ack = Aliment.objects.get_or_create(nom=product["product_name_fr"])
+                except DataError as e:
+                    print("bug")
+                    print(e)
+                    continue
+                try:
+                    alm.note_nutritionelle = product["nutrition_grades_tags"][0]
                     alm.url_off = product["url"]
                     alm.url_img = product["image_url"]
                     alm.glucide_100g = product["nutriments"]["carbohydrates_100g"]
