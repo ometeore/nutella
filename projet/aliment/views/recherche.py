@@ -11,7 +11,7 @@ def index(request):
         form = RechercheAliment(request.POST)
         if form.is_valid():
             aliment_search_list = Aliment.objects.filter(
-                nom__contains=request.POST["element_search"]
+                nom__icontains = request.POST["element_search"]
             )
             context = {
                 "latest_aliment_list": aliment_search_list,
