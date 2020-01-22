@@ -28,8 +28,10 @@ class Aliment(models.Model):
         return self.nom
 
     def sum_nutrition(self):
-        return self.salt_100g + self.acide_100g + self.sugar_100g + self.glucide_100g
-    
+        if(isinstance(self.salt_100g, int) or isinstance(self.acide_100g, int) or isinstance(self.sugar_100g, int) or isinstance(self.glucide_100g, int)):
+            return self.salt_100g + self.acide_100g + self.sugar_100g + self.glucide_100g
+        else:
+            return 100
     
     def is_complete(self):
     ###      test que doit remplir un aliment avant d'être sauvegarder #####
@@ -58,7 +60,10 @@ class Aliment(models.Model):
                 cats_of_potential_substitute = list(al.categorie.values_list("pk", flat="True"))
                 if(compare_list(cats_of_potential_substitute, cat) == common_cat_numbers):
                     if(al.note_nutritionelle <= self.note_nutritionelle):
-                        candidates.append(al)
+                        if al in candidates:
+                            pass
+                        else:
+                            candidates.append(al)
             if len(candidates) < 6:
                 common_cat_numbers = common_cat_numbers - 1
                 if common_cat_numbers == 0:
@@ -67,7 +72,7 @@ class Aliment(models.Model):
                 need_to_keep_looking = False
 
         final_list = sorted(candidates, key=lambda aliment: aliment.sum_nutrition(), reverse=False)
-
+        print(final_list)
         return final_list[0:6]
 
 
