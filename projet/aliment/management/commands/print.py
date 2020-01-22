@@ -39,9 +39,10 @@ class Command(BaseCommand):
             for product in products:
                 try:
                     alm, ack = Aliment.objects.get_or_create(nom=product["product_name_fr"])
-                except DataError as e:
+                except DataError as f:
                     print("bug")
-                    print(e)
+                    print(f)
+                    print("unknown")
                     continue
                 try:
                     alm.note_nutritionelle = product["nutrition_grades_tags"][0]
@@ -78,6 +79,7 @@ class Command(BaseCommand):
                 ### sauvegarde de l'aliment ssi complet
                 try:
                     alm.save()
-                except Aliment.DataError:
-                    print("oups, fail\n")
+                except DataError:
+                    continue
+
 
