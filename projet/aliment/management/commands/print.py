@@ -39,7 +39,7 @@ class Command(BaseCommand):
             for product in products:
                 try:
                     alm, ack = Aliment.objects.get_or_create(nom=product["product_name_fr"])
-                except DataError as f:
+                except (KeyError, DataError) as f:
                     print("bug")
                     print(f)
                     print("unknown")
