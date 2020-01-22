@@ -30,7 +30,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         list_of_categorie = ["viande","biscuit","legume","snacks","Boissons","Produits laitiers","Céréales et pommes de terre"]
-
+        list_of_categorie = ["Produits fermentés","Produits à tartiner","Biscuits et gâteaux","Charcuteries","Fromages","Desserts"]
         for cat in list_of_categorie:
             products = get_list_aliment(cat,100)
 
