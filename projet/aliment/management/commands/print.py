@@ -30,9 +30,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         list_of_categorie = ["viande","biscuit","legume","snacks","Boissons","Produits laitiers","Céréales et pommes de terre"]
-        list_of_categorie = ["Produits fermentés","Produits à tartiner","Biscuits et gâteaux","Charcuteries","Fromages","Desserts"]
+        list_of_categorie = ["Produits fermentés","Produits à tartiner","Biscuits et gâteaux","Charcuteries","Fromages","Desserts"  ]
+        list_of_categorie = ["Sauces", "Produits de la mer", "Surgelés", "Confiseries", "Conserves", "Poissons", "Boissons alcoolisées", "Biscuits", "Boissons aux fruits", "Chocolats", "Matières grasses", "Condiments", "Jus et nectars", "Produits déshydratés", "Pains", "Confitures", "Jus de fruits", "Boissons chaudes", "Vins", "Graines", "Produits de la ruche", "Desserts lactés"]
         for cat in list_of_categorie:
-            products = get_list_aliment(cat,100)
+            products = get_list_aliment(cat,400)
 
             ##### Pour chacun des aliments on crée une instance et on le sauvgarde
             for product in products:
