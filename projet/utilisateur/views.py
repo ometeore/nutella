@@ -41,7 +41,7 @@ def create(request):
     if form.is_valid():
         if form.cleaned_data["confirm_password"] == form.cleaned_data["password"]:
             user = MyUser.objects.create_user(form.cleaned_data["Username"])
-            user.set_password = form.cleaned_data["password"]
+            user.set_password(form.cleaned_data["password"])
             user.last_name = form.cleaned_data["last_name"]
             user.first_name = form.cleaned_data["first_name"]
             user.email = form.cleaned_data["email"]
@@ -55,3 +55,6 @@ def create(request):
 def deconnexion(request):
     logout(request)
     return redirect("/")
+
+def mention_legale(request):
+    return render(request, "mention_legales/mention_legales.html")

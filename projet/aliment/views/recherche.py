@@ -20,9 +20,12 @@ def index(request):
             print(list(aliment_search_list))
             if(list(aliment_search_list) == []):
                 form1 = RechercheAliment()
-                return render(request, "layouts/main.html", {"form": form1})
+                return render(request, "layouts/main.html", {"form": form})
             else:
                 return render(request, "aliment/recherche.html", context)
+        else:
+            return render(request, "layouts/main.html", {"form": form})
+
 
     else:
         return render(request, "aliment/index.html")

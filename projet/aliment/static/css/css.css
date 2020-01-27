@@ -8,7 +8,7 @@ body, h1
 #remi_colette{
     background-color: #f4623a;
     color: white;
-    padding-top: 80px;
+    padding-top: 50px;
     padding-bottom: 80px;
 }
 #navbar{
@@ -84,7 +84,7 @@ body, h1
     background: url("/static/img/fond.jpg") no-repeat;
     background-size: cover;
     opacity: 0.9;
-    height: 650px;
+    height: 732px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -108,7 +108,7 @@ body, h1
     justify-content: space-around;
 }
 #contact{
-    margin:100px;
+    margin: 50px;
 }
 .text_justify{
     text-align: justify;

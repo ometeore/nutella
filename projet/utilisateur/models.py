@@ -3,7 +3,7 @@ from django.db import models
 
 
 class MyUser(AbstractUser):
-    aliment = models.ManyToManyField("aliment.Aliment")  # int(11) NOT NULL,
+    aliment = models.ManyToManyField("aliment.Aliment", blank=True)  # int(11) NOT NULL,
 
 
 #    last_name = models.CharField(max_length=100, blank=True)
