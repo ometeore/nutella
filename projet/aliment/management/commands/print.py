@@ -34,9 +34,9 @@ class Command(BaseCommand):
         save = 0
         names = []
         list_of_categorie = ["viande","biscuit","legume","snacks","Boissons","Produits laitiers","Céréales et pommes de terre"]
-        list_of_categorie = ["Produits fermentés","Produits à tartiner","Biscuits et gâteaux","Charcuteries","Fromages","Desserts"  ]
-        list_of_categorie = ["Sauces", "Produits de la mer", "Surgelés", "Confiseries", "Conserves", "Poissons", "Boissons alcoolisées", "Biscuits", "Boissons aux fruits", "Chocolats", "Matières grasses", "Condiments", "Jus et nectars", "Produits déshydratés", "Pains", "Confitures", "Jus de fruits", "Boissons chaudes", "Vins", "Graines", "Produits de la ruche", "Desserts lactés"]
-        list_of_categorie = ["Produits de la ruche"]
+        list_of_categorie = list_of_categorie + ["Produits fermentés","Produits à tartiner","Biscuits et gâteaux","Charcuteries","Fromages","Desserts"  ]
+        list_of_categorie = list_of_categorie + ["Sauces", "Produits de la mer", "Surgelés", "Confiseries", "Conserves", "Poissons", "Boissons alcoolisées", "Biscuits", "Boissons aux fruits", "Chocolats", "Matières grasses", "Condiments", "Jus et nectars", "Produits déshydratés", "Pains", "Confitures", "Jus de fruits", "Boissons chaudes", "Vins", "Graines", "Produits de la ruche", "Desserts lactés"]
+        #list_of_categorie = ["Produits de la ruche"]
         for cat in list_of_categorie:
             products = get_list_aliment(cat,400)
 
