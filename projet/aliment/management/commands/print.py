@@ -96,7 +96,7 @@ class Command(BaseCommand):
                         alm.categorie.add(cat_already_exist)
 
                     except Categorie.DoesNotExist:
-                        new_DataErrorcat.save()
+                        new_cat.save()
                         alm.categorie.add(new_cat)
 
 
