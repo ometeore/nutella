@@ -46,7 +46,7 @@
         <div class="vertical_flex">
           <form action="{% url 'aliment:recherche' %}" method="POST">
             {% csrf_token %}
-            <input type="text" class="header_search_input" name="element_search">
+            <input type="text" class="element_search header_search_input" name="element_search">
           </form>
         </div>
         <a class="color_white" href="{% url 'aliment:index' %}"><i class="fas fa-carrot"></i></a>
@@ -92,7 +92,6 @@
 
   <!-- Custom scripts for this template -->
   <script src="{% static 'js/js.js' %}"></script>
-  <script src="{% static 'js/creative.min.js' %}"></script>
 
 
 </body>

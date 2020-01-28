@@ -6,6 +6,7 @@ app_name = "aliment"
 
 urlpatterns = [
     path("recherche", recherche.index, name="recherche"),
+    path("validation", recherche.validate_search, name='validation'),
     path("", aliment.index, name="index"),
     path("<int:aliment_id>/", aliment.detail, name="detail"),
     path("substitute/<int:aliment_id>/", aliment.substitute, name="substitute"),

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from aliment.models import Aliment
 from utilisateur.models import MyUser
 from .forms import RechercheAliment
@@ -29,6 +29,18 @@ def index(request):
 
     else:
         return render(request, "aliment/index.html")
+
+
+def validate_search(request):
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    print("VALIDATE SEARCH")
+    element_search = request.GET.get('element_search', None)
+    data = {
+        'is_taken': Aliment.objects.filter(nom__icontains=element_search).exists()
+    }
+    return JsonResponse(data)
+
+
 
 
 def detail(request, aliment_id):

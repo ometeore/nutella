@@ -1,6 +1,7 @@
 {% extends 'layouts/index_bootstrap_theme.html' %}
 {% load static %}
 
+
 {% block content %}
   <!-- pannel photo and search input  -->
     <div id="main_pannel" class="">
@@ -14,7 +15,7 @@
                     
           <form action="{% url 'aliment:recherche' %}" method="post">
             {% csrf_token %}
-            <input type="text" name="element_search">
+            <input class="element_search" onkeyup="maFonction(this.value);" id="element_search" type="text" name="element_search">
           </form>
 
         </div>
@@ -78,4 +79,5 @@
 
   </div>
 {% endblock %}
+
 
