@@ -32,8 +32,6 @@ def index(request):
 
 
 def validate_search(request):
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    print("VALIDATE SEARCH")
     element_search = request.GET.get('element_search', None)
     data = {
         'is_taken': Aliment.objects.filter(nom__icontains=element_search).exists()

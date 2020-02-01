@@ -16,7 +16,7 @@ class TestAliment(TestCase):
         self.Pomme.categorie.add(cat1)
         self.Poire = Aliment.objects.create(nom="Poire",note_nutritionelle="b", url_off="http",url_img="http2", glucide_100g="0.123",salt_100g="0.123", sugar_100g="0.123", acide_100g="0.123")
         self.Poire.categorie.add(cat1)
-        self.Tournedos = Aliment.objects.create(nom="Tournedos",note_nutritionelle="unknown", url_off="http",url_img="http2", glucide_100g="0.123",salt_100g="0.123", sugar_100g="0.123", acide_100g="0.123")
+        self.Tournedos = Aliment.objects.create(nom="Tournedos",note_nutritionelle="c", url_off="http",url_img="http2", glucide_100g="0.123",salt_100g="0.123", sugar_100g="0.123", acide_100g="0.123")
         self.Tournedos.categorie.add(cat2)
 
 

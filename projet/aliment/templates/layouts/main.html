@@ -15,7 +15,7 @@
                     
           <form action="{% url 'aliment:recherche' %}" method="post">
             {% csrf_token %}
-            <input class="element_search" onkeyup="validate_aliment(this.value);" id="element_search" type="text" name="element_search">
+            <input class="element_search" onkeyup="validate_aliment(this.value);" type="text" name="element_search">
           </form>
 
         </div>
