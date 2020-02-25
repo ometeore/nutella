@@ -11,4 +11,4 @@ services:
  - postgresql
 
 script:
- - python3 projet/manage.py test
+ - python3 /home/pilt/applications/nutella/projet/manage.py test
