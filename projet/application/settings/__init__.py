@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    "django_crontab",
     "aliment.apps.AlimentConfig",
     "utilisateur.apps.UtilisateurConfig",
     "django.contrib.admin",
@@ -39,6 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "debug_toolbar",
+]
+
+CRONJOBS = [
+    ('* * * * *', 'projet.application.cron.update_database')
 ]
 
 AUTH_USER_MODEL = "utilisateur.MyUser"
@@ -88,13 +93,14 @@ WSGI_APPLICATION = "application.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'nutella',
+        'NAME': 'amateur_nutella',
         'USER': 'pilt',
-        'PASSWORD': 'iaPit64aipAOE2',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
+#en prod name: nutella, password iaP
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
