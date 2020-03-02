@@ -23,7 +23,7 @@ class TestAliment(TestCase):
     def test_aliment_substitution(self):
         ### Test l'algorithme de substitution ###
         self.assertEqual(self.Pomme.substitute(), [self.Banane])
-        self.assertEqual(self.Poire.substitute(), [self.Pomme, self.Banane])
+        self.assertEqual(self.Poire.substitute(), [self.Banane, self.Pomme])
 
     def test_is_completed(self):
         self.assertEqual(self.Tournedos.is_complete(), False)

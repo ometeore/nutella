@@ -1,2 +1,2 @@
 def update_database():
-    print("cron in action")
+    open("toto", "w")
