@@ -26,7 +26,7 @@ class TestAliment(TestCase):
         self.assertEqual(self.Poire.substitute(), [self.Banane, self.Pomme])
 
     def test_is_completed(self):
-        self.assertEqual(self.Tournedos.is_complete(), False)
+        self.assertEqual(self.Tournedos.is_complete(), True)
         self.assertEqual(self.Poire.is_complete(), True)
 
 
