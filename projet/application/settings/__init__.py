@@ -17,10 +17,10 @@ from sentry_sdk.integrations.django import DjangoIntegration
 
 
 RAVEN_CONFIG = {
-    'dsn': 'https://somethingverylong@sentry.io/216272', # caution replace by your own!!
+    'dsn': 'https://9c3cc02296c949428ac7a15ddcd66467@sentry.io/4033883', #caution replace by your own!!
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    #'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
 }
 
 LOGGING = {
@@ -79,17 +79,6 @@ sentry_sdk.init(
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
-sentry_sdk.init(
-    dsn="https://6c286ffbc21d4380a7873e9ff9de7c05@sentry.io/2973799",
-    integrations=[DjangoIntegration()],
-
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -107,7 +96,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    "django_crontab",
     "aliment.apps.AlimentConfig",
     "utilisateur.apps.UtilisateurConfig",
     "django.contrib.admin",
@@ -120,9 +108,6 @@ INSTALLED_APPS = [
     "debug_toolbar",
 ]
 
-CRONJOBS = [
-    ('* * * * *', 'projet.application.cron.update_database')
-]
 
 AUTH_USER_MODEL = "utilisateur.MyUser"
 
@@ -171,9 +156,9 @@ WSGI_APPLICATION = "application.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'amateur_nutella',
+        'NAME': 'nutella',
         'USER': 'pilt',
-        'PASSWORD': 'password',
+        'PASSWORD': 'iaPit64aipAOE2',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -217,15 +202,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-#  Add configuration for static files storage using whitenoise
-#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Activate Django-Heroku.
-#django_heroku.settings(locals())
