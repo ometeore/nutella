@@ -1,0 +1,49 @@
+[
+    "products":[
+        {
+            "product_name_fr": "patate",
+            "nutrition_grades_tags": [
+                "b"
+            ],
+            "url": "https://fr.openfoodfacts.org/produit/8000500310427/nutella-biscuits",
+            "image_url": "https://static.openfoodfacts.org/images/products/309/575/769/7105/front_fr.94.400.jpg",
+            "nutriments": {
+                "carbohydrates_100g": 0.9,
+                "sugars_100g": 0.9,
+                "salt_100g": 1.4,
+                "saturated-fat_100g": 0.5,
+            },
+            "categories": "Produits à tartiner,Viandes,Produits à tartiner salés,Charcuteries,Rillettes,Rillettes de viande,Rillettes de viande blanche,Rillettes de volaille,Rillettes de poulet",
+        }
+        {
+            "product_name_fr": "patate2",
+            "nutrition_grades_tags": [
+                "b"
+            ],
+            "url": "https://fr.openfoodfacts.org/produit/8000500310427/nutella-biscuits",
+            "image_url": "https://static.openfoodfacts.org/images/products/309/575/769/7105/front_fr.94.400.jpg",
+            "nutriments": {
+                "carbohydrates_100g": 0.9,
+                "sugars_100g": 0.9,
+                "salt_100g": 1.4,
+                "saturated-fat_100g": 0.5,
+            },
+            "categories": "Produits à tartiner,Viandes,Produits à tartiner salés,Charcuteries,Rillettes,Rillettes de viande,Rillettes de viande blanche,Rillettes de volaille,Rillettes de poulet",
+        }
+        {
+            "product_name_fr": "patate_incomplete",
+            "nutrition_grades_tags": [
+                "b"
+            ],
+            "url": "https://fr.openfoodfacts.org/produit/8000500310427/nutella-biscuits",
+            "image_url": "https://static.openfoodfacts.org/images/products/309/575/769/7105/front_fr.94.400.jpg",
+            "nutriments": {
+                "carbohydrates_100g": 0.9,
+                "sugars_100g": 0.9,
+                "salt_100g": 1.4,
+                "saturated-fat_100g": 0.5,
+            },
+            "categories": "Produits à tartiner,Viandes,Produits à tartiner salés,Charcuteries,Rillettes,Rillettes de viande,Rillettes de viande blanche,Rillettes de volaille,Rillettes de poulet",
+        }
+    ]
+]

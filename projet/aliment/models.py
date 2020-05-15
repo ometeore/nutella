@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.conf import settings
+import requests
 
 
 
@@ -12,7 +13,7 @@ def compare_list(list1, list2):
 
 
 
-class Aliment(models.Model):
+class Aliment(models.Model): 
     nom = models.CharField("nom", max_length=50)
     note_nutritionelle = models.CharField(max_length=1)
     categorie = models.ManyToManyField("aliment.Categorie")
@@ -76,8 +77,130 @@ class Aliment(models.Model):
         return final_list[0:6]
 
 
+
+
+
+
+########################################################### CATEGORIES
+
 class Categorie(models.Model):
     nom = models.CharField("nom", max_length=80, unique=True)
+    insert = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nom
+
+    def import_cat(self):
+        success = 0
+        if self.insert == True:
+            return -1
+        else:
+            products = self.get_list_aliment()
+            ##### Pour chacun des aliments on crée une instance et on le sauvegarde
+            for product in products:    
+                product_test = self.aliment_test(product)
+                if product_test:
+                    try:
+                        success = success + 1
+                        self.go_save(product)
+                    except:
+                        continue
+
+                else:
+                    continue
+        return success
+
+
+
+    def get_list_aliment(self):
+    ### Appele l'API d'open food fact retourne sous forme de json une liste de produits appartenant a la categorie  
+
+        url_new = "https://fr.openfoodfacts.org/cgi/search.pl"
+        getVars = {
+            "action": "process",
+            "tagtype_0": "categories",
+            "tag_contains_0": "contains",
+            "tag_0": self.nom,
+            "sort_by": "unique_scans_n",
+            "page_size": settings.NOMBRE_A_IMPORTER,
+            "axis_x": "energy",
+            "axis_y": "products_n",
+            "json": '1',
+        }
+        try:
+            encoded = requests.get(url_new, params=getVars).json()
+            print(encoded['products'])
+            return encoded["products"]
+        except(KeyError, IndexError):
+            return None
+        return encoded["products"]
+
+
+    def aliment_test(self, product):
+
+        if not product.get("product_name_fr"):
+            return False
+        if Aliment.objects.filter(nom=product["product_name_fr"]).count():
+            return False
+
+        try:
+            alm = Aliment(nom=product["product_name_fr"])
+        except (KeyError, DataError) as f:
+            return False
+        try:
+            alm.note_nutritionelle = product["nutrition_grades_tags"][0]
+            alm.glucide_100g = product["nutriments"]["carbohydrates_100g"]
+            alm.sugar_100g = product["nutriments"]["sugars_100g"]
+            alm.salt_100g = product["nutriments"]["salt_100g"]
+            alm.acide_100g = product["nutriments"]["saturated-fat_100g"]
+            str_all_categories = product["categories"]
+            alm.url_off = product["url"]
+            if product["image_url"] == '':
+                alm.url_img = None
+            else:
+                alm.url_img = product["image_url"]
+
+        except KeyError as e:
+            return False
+        try:
+            return True
+        except DataError as e:
+            return False
+        else:
+            return False
+
+    #### sauvegarde un aliment renvoi l'ensemble des catégories à lui associer
+    def go_save(self, product):
+        nbr_alm = 0
+        nbr_cat = 0
+        alm = Aliment(nom=product["product_name_fr"])
+        alm.note_nutritionelle = product["nutrition_grades_tags"][0]
+        alm.url_off = product["url"]
+        if product["image_url"] == '':
+            alm.url_img = None
+        else:
+            alm.url_img = product["image_url"]
+            alm.glucide_100g = product["nutriments"]["carbohydrates_100g"]
+            alm.sugar_100g = product["nutriments"]["sugars_100g"]
+            alm.salt_100g = product["nutriments"]["salt_100g"]
+            alm.acide_100g = product["nutriments"]["saturated-fat_100g"]
+            str_all_categories = product["categories"]
+        alm.save()
+        list_all_categories = str_all_categories.split(",")
+        for cat_of_elm2 in list_all_categories:
+
+            ##### On verifie si il existe en base si oui on l'ajoute dans les cat de l'aliment sinon
+            cat_of_elm = cat_of_elm2.strip()
+            try:
+                cat_already_exist = Categorie.objects.get(nom=cat_of_elm)
+                alm.categorie.add(cat_already_exist)
+
+            except Categorie.DoesNotExist:
+                new_cat = Categorie(nom=cat_of_elm)
+                new_cat.save()
+                alm.categorie.add(new_cat)
+                nbr_cat = nbr_cat + 1
+        alm.save()
+        nbr_alm = nbr_alm + 1
+        print("\n\n\n")
+        print("{} aliments ajoutés, {} catégories ajouté\n".format(nbr_alm, nbr_cat))

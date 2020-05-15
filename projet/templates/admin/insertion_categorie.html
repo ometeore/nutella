@@ -1,0 +1,39 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% load static %}
+
+
+{% block content %}
+    <h1>Page de gestion et management des catégories</h1>
+
+    <div class="horizontal_flex">
+    <form  action="{% url 'espace_admin:add_cat' %}" method="POST">
+        {% csrf_token %}
+        <table id="datatable_categorie" class="display" border='2' align="center">
+            <thead>
+                <tr>
+                    <th>categorie</th>
+                    <th>inclure</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cat in cat_list %}
+                    <tr>
+                        <td>{{ cat.nom }} </td>
+                        <td> 
+                            {% if cat.insert == False %}
+                                <input type="checkbox" value="{{ cat.pk }}" name="cat">
+                            {% else %}
+                                <input type="checkbox" id ="" name="{{ cat.pk }}" checked>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="text" placeholder="Combien par catégorie?" name="nombre">
+        <input type="submit" value="Let's go!">
+    </form>
+    </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<h1>success!!!!</h1>
+
+{% for element in cat  %}
+
+    <p> {{ element }} </p>
+
+{% endfor %}
+
+
+
+
+{% if categories.errors %}
+    {% for field in categories %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in categories.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

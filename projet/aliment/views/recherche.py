@@ -9,6 +9,7 @@ def index(request):
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
         form = RechercheAliment(request.POST)
+        print(form)
         if form.is_valid():
             aliment_search_list = Aliment.objects.filter(
                 nom__icontains = request.POST["element_search"]
@@ -16,10 +17,8 @@ def index(request):
             context = {
                 "latest_aliment_list": aliment_search_list,
             }
-            print("\n\n\n")
-            print(list(aliment_search_list))
+
             if(list(aliment_search_list) == []):
-                form1 = RechercheAliment()
                 return render(request, "layouts/main.html", {"form": form})
             else:
                 return render(request, "aliment/recherche.html", context)

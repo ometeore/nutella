@@ -1,0 +1,71 @@
+{% extends 'layouts/index_bootstrap_theme.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="horizontal_flex margin_40">
+    <h1>Import de catégories</h1>
+</div>
+
+<div class="horizontal_flex">
+    {% if nbr_alm > 0 %}
+
+        <p> {{ nbr_alm }} Aliments importés.</p>
+
+    {% endif %}
+</div>
+<div id="block_espace_admin" class="vertical_flex"> 
+    <div class="custom_flex">
+        <input id="select_cat_input" onkeyup="select_categorie(this.value);" type="text">
+        <input type="submit" onclick="submit_form()"value="Let's go!">
+    </div>
+
+    <div class="horizontal_flex width_100" >
+        <form id="form_cat_select" action="{% url 'espace_admin:manage_cat' %}" method="post">
+            {{ formset.management_form }}
+            {% csrf_token %}
+
+
+            <table id="tableau_espace_admin" class="display" border='2' align="center">
+
+                <thead>
+                    <tr class="table_padding">
+                        <th class="table_padding">categorie</th>
+                        <th class="table_padding">inclure</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for form in formset %}
+
+                        <tr class="magic_tr table_padding" id="{{ form.nom.value }}" style="display: none;">
+                            
+                            <td class="table_padding">
+                                {{ form.nom.value }}
+                                <div style="display: none;">{{ form.nom }}  </div>
+                            </td>
+
+                            <td class="table_padding">
+                                {{ form.insert }}
+                                {% for hidden in form.hidden_fields %}
+                                    {{ hidden }}
+                                {% endfor %}
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </form>
+                <!-- 
+
+                -->
+    </div>
+</div>
+
+{% endblock %}
