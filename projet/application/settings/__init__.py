@@ -11,7 +11,72 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-#import django_heroku
+import sentry_sdk
+import raven
+from sentry_sdk.integrations.django import DjangoIntegration
+
+
+RAVEN_CONFIG = {
+    'dsn': 'https://9c3cc02296c949428ac7a15ddcd66467@sentry.io/4033883', #caution replace by your own!!
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    #'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'root': {
+        'level': 'INFO', # WARNING by default. Change this to capture more than warnings.
+        'handlers': ['sentry'],
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s '
+                      '%(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'sentry': {
+            'level': 'INFO', # To capture more than ERROR, change to WARNING, INFO, etc.
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            'tags': {'custom-tag': 'x'},
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'raven': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
+}
+
+sentry_sdk.init(
+    dsn="https://9c3cc02296c949428ac7a15ddcd66467@sentry.io/4033883",
+    integrations=[DjangoIntegration()],
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -32,11 +97,11 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    "django_crontab",
     "aliment.apps.AlimentConfig",
     "espace_admin.apps.EspaceAdminConfig",
     "utilisateur.apps.UtilisateurConfig",
     "django.contrib.admin",
+    'raven.contrib.django.raven_compat',
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -45,9 +110,6 @@ INSTALLED_APPS = [
     "debug_toolbar",
 ]
 
-CRONJOBS = [
-    ('* * * * *', 'projet.application.cron.update_database')
-]
 
 AUTH_USER_MODEL = "utilisateur.MyUser"
 
@@ -93,9 +155,9 @@ WSGI_APPLICATION = "application.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'amateur_nutella',
+        'NAME': 'nutella',
         'USER': 'pilt',
-        'PASSWORD': 'password',
+        'PASSWORD': 'iaPit64aipAOE2',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -138,5 +200,3 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-# Activate Django-Heroku.
-#django_heroku.settings(locals())
